@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+
+    <style>
+        #people{
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        table{
+            margin: 25px;
+        }
+
+        th{
+            text-align: left;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+
+</head>
+<body>
+    <table id="people">
+        <thead>People:</thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+            <th>email</th>
+        </tr>
+        <tr th:each="person: ${people}">
+            <td th:text="${person.id}"></td>
+            <td>
+                <a th:href="@{/people/{id}(id=${person.id})}" th:text="${person.name}">name</a>
+            </td>
+            <td th:text="${person.age}">age</td>
+            <td th:text="${person.email}">email</td>
+        </tr>
+    </table>
+    <p>
+    <br/>
+    <hr/>
+    <a th:href="@{/people/new}">Go to create new person...</a>
+</body>
+</html>
